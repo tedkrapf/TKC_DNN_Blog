@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Dnn9DevDb" Class="BlogDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLDEV;Initial Catalog=Dnn9DevDb;User ID=Dnn9Sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Blog_Blogs" Member="Blog_Blogs">
+    <Type Name="Blog_Blog">
+      <Column Name="PortalID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BlogID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="[Public]" Member="Public" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowComments" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastEntry" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ShowFullName" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DateFormat" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Culture" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="TimeZone" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ParentBlogID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Syndicated" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SyndicateIndependant" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SyndicationURL" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="SyndicationEmail" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="EmailNotification" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AllowTrackbacks" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AutoTrackback" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="MustApproveComments" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="MustApproveAnonymous" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="MustApproveTrackbacks" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="UseCaptcha" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Blog_Blog_Blog_Entry" Member="Blog_Entries" ThisKey="BlogID" OtherKey="BlogID" Type="Blog_Entry" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Blog_Tags" Member="Blog_Tags">
+    <Type Name="Blog_Tag">
+      <Column Name="TagID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tag" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Slug" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PortalID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Blog_Tag_Blog_Entry_Tag" Member="Blog_Entry_Tags" ThisKey="TagID" OtherKey="TagID" Type="Blog_Entry_Tag" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Blog_Categories" Member="Blog_Categories">
+    <Type Name="Blog_Category">
+      <Column Name="CatID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Category" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Slug" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PortalID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Blog_Category_Blog_Entry_Category" Member="Blog_Entry_Categories" ThisKey="CatID" OtherKey="CatID" Type="Blog_Entry_Category" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Blog_Comments" Member="Blog_Comments">
+    <Type Name="Blog_Comment">
+      <Column Name="CommentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EntryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Comment" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="AddedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Approved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Author" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Website" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Blog_Entry_Blog_Comment" Member="Blog_Entry" ThisKey="EntryID" OtherKey="EntryID" Type="Blog_Entry" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Blog_Entries" Member="Blog_Entries">
+    <Type Name="Blog_Entry">
+      <Column Name="BlogID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EntryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Entry" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="AddedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Published" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="AllowComments" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DisplayCopyright" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Copyright" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PermaLink" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Association Name="Blog_Entry_Blog_Comment" Member="Blog_Comments" ThisKey="EntryID" OtherKey="EntryID" Type="Blog_Comment" />
+      <Association Name="Blog_Entry_Blog_Entry_Category" Member="Blog_Entry_Categories" ThisKey="EntryID" OtherKey="EntryID" Type="Blog_Entry_Category" />
+      <Association Name="Blog_Entry_Blog_Entry_Tag" Member="Blog_Entry_Tags" ThisKey="EntryID" OtherKey="EntryID" Type="Blog_Entry_Tag" />
+      <Association Name="Blog_Blog_Blog_Entry" Member="Blog_Blog" ThisKey="BlogID" OtherKey="BlogID" Type="Blog_Blog" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Blog_Entry_Categories" Member="Blog_Entry_Categories">
+    <Type Name="Blog_Entry_Category">
+      <Column Name="EntryCatID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EntryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CatID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Blog_Category_Blog_Entry_Category" Member="Blog_Category" ThisKey="CatID" OtherKey="CatID" Type="Blog_Category" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Blog_Entry_Blog_Entry_Category" Member="Blog_Entry" ThisKey="EntryID" OtherKey="EntryID" Type="Blog_Entry" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Blog_Entry_Tags" Member="Blog_Entry_Tags">
+    <Type Name="Blog_Entry_Tag">
+      <Column Name="EntryTagID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EntryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TagID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Blog_Entry_Blog_Entry_Tag" Member="Blog_Entry" ThisKey="EntryID" OtherKey="EntryID" Type="Blog_Entry" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Blog_Tag_Blog_Entry_Tag" Member="Blog_Tag" ThisKey="TagID" OtherKey="TagID" Type="Blog_Tag" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Blog_MetaWeblogData" Member="Blog_MetaWeblogDatas">
+    <Type Name="Blog_MetaWeblogData">
+      <Column Name="TempInstallUrl" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Blog_Settings" Member="Blog_Settings">
+    <Type Name="Blog_Setting">
+      <Column Name="PortalID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[Key]" Member="Key" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Value" Type="System.String" DbType="NVarChar(1024) NOT NULL" CanBeNull="false" />
+      <Column Name="TabID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

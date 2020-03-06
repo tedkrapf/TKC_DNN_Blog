@@ -1,0 +1,7 @@
+C:\Domains\Dnn9\bin\TKC_DnnBlog.dll
+C:\Domains\Dnn9\bin\TKC_DnnBlog.pdb
+C:\Domains\Dnn9\DesktopModules\TKC_DnnBlog\obj\Release\TKC_DnnBlog.csproj.CoreCompileInputs.cache
+C:\Domains\Dnn9\DesktopModules\TKC_DnnBlog\obj\Release\TKC_DnnBlog.csproj.CopyComplete
+C:\Domains\Dnn9\DesktopModules\TKC_DnnBlog\obj\Release\TKC_DnnBlog.dll
+C:\Domains\Dnn9\DesktopModules\TKC_DnnBlog\obj\Release\TKC_DnnBlog.pdb
+C:\Domains\Dnn9\DesktopModules\TKC_DnnBlog\obj\Release\TKC_DnnBlog.csprojAssemblyReference.cache
